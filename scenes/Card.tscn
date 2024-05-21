@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cs6conp4mmt62"]
+
+[ext_resource type="Texture2D" uid="uid://b08kfjp08vegq" path="res://assets/SGQ_Dungeon/props/animated_props.png" id="1_5uisc"]
+[ext_resource type="Script" path="res://scripts/Card.gd" id="1_6lxfh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ja0w"]
+size = Vector2(14, 14)
+
+[node name="Card" type="Area2D"]
+collision_mask = 16
+script = ExtResource("1_6lxfh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_5uisc")
+hframes = 11
+vframes = 8
+frame = 27
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8ja0w")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

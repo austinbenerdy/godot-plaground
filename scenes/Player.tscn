@@ -36,6 +36,8 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 5
+collision_layer = 16
 script = ExtResource("1_cqcvg")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -46,6 +48,7 @@ position = Vector2(0, 4.5)
 shape = SubResource("RectangleShape2D_0j38v")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 10
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_w2kqv")
 animation = &"idle"
