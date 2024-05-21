@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://bwtr3pp8llrc4"]
+
+[ext_resource type="Script" path="res://scenes/Player.gd" id="1_cqcvg"]
+[ext_resource type="Texture2D" uid="uid://defprea31jhu2" path="res://assets/SGQ_Dungeon/characters/main/elf.png" id="1_mtw56"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0j38v"]
+size = Vector2(12, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7abtd"]
+atlas = ExtResource("1_mtw56")
+region = Rect2(0, 128, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qcvdj"]
+atlas = ExtResource("1_mtw56")
+region = Rect2(0, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfhx3"]
+atlas = ExtResource("1_mtw56")
+region = Rect2(0, 96, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w2kqv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7abtd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qcvdj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfhx3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_cqcvg")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_0j38v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_w2kqv")
+animation = &"idle"
+autoplay = "idle"
