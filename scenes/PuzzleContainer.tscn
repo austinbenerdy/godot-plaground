@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4218sr6n6hb1"]
+
+[ext_resource type="Script" path="res://scripts/PuzzleContainer.gd" id="1_pavf3"]
+
+[node name="PuzzleContainer" type="Node"]
+script = ExtResource("1_pavf3")
+metadata/rows = 10
+metadata/Columns = 10
+metadata/Bombs = 2

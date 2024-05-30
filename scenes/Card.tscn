@@ -1,16 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://cs6conp4mmt62"]
+[gd_scene load_steps=5 format=3 uid="uid://cs6conp4mmt62"]
 
 [ext_resource type="Texture2D" uid="uid://b08kfjp08vegq" path="res://assets/SGQ_Dungeon/props/animated_props.png" id="1_5uisc"]
 [ext_resource type="Script" path="res://scripts/Card.gd" id="1_6lxfh"]
+[ext_resource type="FontFile" uid="uid://dyjog6h5kuth8" path="res://assets/font/VCR_OSD_MONO_1.001.ttf" id="3_6k0vp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ja0w"]
-size = Vector2(14, 14)
+size = Vector2(22, 22)
 
 [node name="Card" type="Area2D"]
 collision_mask = 16
 script = ExtResource("1_6lxfh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.625, 1.625)
 texture = ExtResource("1_5uisc")
 hframes = 11
 vframes = 8
@@ -18,5 +20,17 @@ frame = 27
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_8ja0w")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -7.0
+offset_top = -7.0
+offset_right = 7.0
+offset_bottom = 7.0
+theme_override_colors/font_color = Color(0.957163, 0.588847, 0.321095, 1)
+theme_override_fonts/font = ExtResource("3_6k0vp")
+theme_override_font_sizes/font_size = 16
+text = "?"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

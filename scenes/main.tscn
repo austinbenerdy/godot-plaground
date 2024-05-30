@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bv3wovy3f8q78"]
+[gd_scene load_steps=9 format=3 uid="uid://bv3wovy3f8q78"]
 
 [ext_resource type="Texture2D" uid="uid://ctmfw4kl52gxi" path="res://assets/AdventureBegins_DemoVersion/AdventureBegins_Demo.png" id="1_mrsfq"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_revow"]
 [ext_resource type="PackedScene" uid="uid://bwtr3pp8llrc4" path="res://scenes/Player.tscn" id="2_gqs51"]
 [ext_resource type="PackedScene" uid="uid://cs6conp4mmt62" path="res://scenes/Card.tscn" id="3_xbyx8"]
 [ext_resource type="PackedScene" uid="uid://phlmhl8uu5go" path="res://scenes/BombCard.tscn" id="4_7u802"]
+[ext_resource type="PackedScene" uid="uid://b4218sr6n6hb1" path="res://scenes/PuzzleContainer.tscn" id="5_whkk7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_phoa6"]
 texture = ExtResource("1_mrsfq")
@@ -1701,6 +1703,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_phoa6")
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_revow")
 
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1
@@ -1715,17 +1718,10 @@ layer_1/tile_data = PackedInt32Array()
 [node name="Player" parent="." instance=ExtResource("2_gqs51")]
 position = Vector2(-2, 130)
 
-[node name="Card" parent="." instance=ExtResource("3_xbyx8")]
-position = Vector2(25, 73)
-
-[node name="Card2" parent="." instance=ExtResource("3_xbyx8")]
-position = Vector2(25, 57)
-
-[node name="Card3" parent="." instance=ExtResource("3_xbyx8")]
-position = Vector2(25, 25)
-
-[node name="Card4" parent="." instance=ExtResource("3_xbyx8")]
-position = Vector2(25, 41)
-
 [node name="BombCard" parent="." instance=ExtResource("4_7u802")]
 position = Vector2(25, 9)
+
+[node name="Card" parent="." instance=ExtResource("3_xbyx8")]
+position = Vector2(23, 40)
+
+[node name="PuzzleContainer" parent="." instance=ExtResource("5_whkk7")]
