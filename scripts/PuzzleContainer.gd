@@ -8,12 +8,10 @@ var puzzle : Array = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	cols = 5
-	rows = 5
+	cols = 7
+	rows = 7
 	
-	var desiredBombs := 5
-	
-	var cardType = load("res://scenes/Card.tscn")
+	var desiredBombs := 10
 	
 	var bombCount : int = 0
 	
@@ -70,6 +68,7 @@ func _ready():
 		
 	print(puzzle)
 	printPuzzleDebug()
+	render()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -77,15 +76,39 @@ func _process(delta):
 
 
 func printPuzzleDebug():
-		var output := ""
-		for r in range(puzzle.size()):
-			var line = ""
-			
-			for c in range(puzzle[r].size()):
-				if puzzle[r][c]["bomb"]: 
-					line += "[X]"
-				elif puzzle[r][c]["neighbors"] > 0:
-					line += "[" + str(puzzle[r][c]["neighbors"]) + "]"
-				else:
-					line += "[ ]"
-			print(line)
+	for r in range(puzzle.size()):
+		var line = ""
+		
+		for c in range(puzzle[r].size()):
+			if puzzle[r][c]["bomb"]: 
+				line += "[X]"
+			elif puzzle[r][c]["neighbors"] > 0:
+				line += "[" + str(puzzle[r][c]["neighbors"]) + "]"
+			else:
+				line += "[ ]"
+		print(line)
+
+func render():
+	var cardType = load("res://scenes/Card.tscn")
+	
+	for r in range(puzzle.size()):
+		var line = ""
+		
+		for c in range(puzzle[r].size()):
+			var card = cardType.instantiate()
+			card.set_name("Card_" + str(r) + "_" + str(c))
+			card.setBomb(puzzle[r][c]["bomb"])
+			card.setNeighboringBombs(puzzle[r][c]["neighbors"])
+			card.position.x = c * 24 - 100
+			card.position.y = r * 24 - 100
+
+			print(card)
+			get_node("Puzzle").add_child(card)			
+			if puzzle[r][c]["bomb"]: 
+				line += "[X]"
+			elif puzzle[r][c]["neighbors"] > 0:
+				line += "[" + str(puzzle[r][c]["neighbors"]) + "]"
+			else:
+				line += "[ ]"
+		print(line)
+	

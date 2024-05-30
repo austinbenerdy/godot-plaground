@@ -20,8 +20,12 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-	print("Reveal Value")
-	label.text = str(secretValue)
+	if bomb:
+		label.text = "B"
+	elif coin:
+		label.text = "C"
+	else:
+		label.text = str(neighboringBombs)
 	
 
 func setBomb(newValue : bool): 

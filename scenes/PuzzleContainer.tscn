@@ -7,3 +7,5 @@ script = ExtResource("1_pavf3")
 metadata/rows = 10
 metadata/Columns = 10
 metadata/Bombs = 2
+
+[node name="Puzzle" type="Node2D" parent="."]
