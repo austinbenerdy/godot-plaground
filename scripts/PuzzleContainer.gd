@@ -90,9 +90,19 @@ func printPuzzleDebug():
 
 func render():
 	var cardType = load("res://scenes/Card.tscn")
+	var blockType = load("res://scenes/BorderBlock.tscn")
+	
 	
 	for r in range(puzzle.size()):
 		var line = ""
+		var puzzleNode = get_node("Puzzle")
+		
+		var leftBlockInstance = blockType.instantiate()
+		leftBlockInstance.set_name("LeftBlock_" + str(r))
+		leftBlockInstance.position.y = r * 24 - 110
+		leftBlockInstance.position.x = - 130
+		#get_node("Puzzle").add_child(leftBlockInstance)
+		puzzleNode.add_child(leftBlockInstance)
 		
 		for c in range(puzzle[r].size()):
 			var card = cardType.instantiate()
@@ -103,7 +113,7 @@ func render():
 			card.position.y = r * 24 - 100
 
 			print(card)
-			get_node("Puzzle").add_child(card)			
+			puzzleNode.add_child(card)			
 			if puzzle[r][c]["bomb"]: 
 				line += "[X]"
 			elif puzzle[r][c]["neighbors"] > 0:
@@ -112,3 +122,9 @@ func render():
 				line += "[ ]"
 		print(line)
 	
+		var rightBlockInstance = blockType.instantiate()
+		rightBlockInstance.set_name("RightBlock_" + str(r))
+		rightBlockInstance.position.x = puzzle[r].size() * 25 - 115
+		rightBlockInstance.position.y = r * 24 - 110
+		
+		puzzleNode.add_child(rightBlockInstance)
