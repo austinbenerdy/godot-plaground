@@ -22,10 +22,12 @@ func _process(delta):
 func _on_body_entered(body):
 	if bomb:
 		label.text = "B"
+		body.die()
 	elif coin:
 		label.text = "C"
 	else:
 		label.text = str(neighboringBombs)
+		
 	
 
 func setBomb(newValue : bool): 

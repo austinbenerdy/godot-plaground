@@ -1,17 +1,21 @@
 extends Node
 
-var cols : int = 0
-var rows : int = 0
+var cols : int = 10
+var rows : int = 10
 
 var puzzle : Array = []
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	cols = 7
-	rows = 7
+	cols = self.cols
+	rows = self.rows
 	
 	var desiredBombs := 10
+	if ((cols * rows) < desiredBombs):
+		print("Impossible Map")
+		desiredBombs = 0
+	
 	
 	var bombCount : int = 0
 	

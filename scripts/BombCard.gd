@@ -13,3 +13,4 @@ func _process(delta):
 
 func _on_body_entered(body):
 	print("Bomb... You Exploded")
+	body.die()

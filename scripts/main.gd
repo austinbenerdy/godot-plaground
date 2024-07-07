@@ -6,7 +6,8 @@ func _ready():
 	#puzzle.set_meta("Columns", 3)
 	#puzzle.set_meta("Rows", 4)
 	#puzzle.set_meta("Bombs", 2)
-	pass # Replace with function body.
+	pass
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -39,3 +39,7 @@ func _physics_process(delta):
 		sprite.play("idle")
 
 	move_and_slide()
+
+func die():
+	get_tree().change_scene_to_file("res://scenes/main.tscn")
+	pass
