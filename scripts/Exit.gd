@@ -20,6 +20,8 @@ func _process(delta):
 
 
 func _on_body_entered(body):
+	GlobalState.coins = GlobalState.coins + 1
+	GlobalState.save()
 	body.die()
 
 func setBomb(newValue : bool): 

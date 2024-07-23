@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dw2amv38kiba2"]
+
+[ext_resource type="Script" path="res://scripts/System.gd" id="1_v2r2i"]
+
+[node name="System" type="Node" groups=["Persistent"]]
+script = ExtResource("1_v2r2i")

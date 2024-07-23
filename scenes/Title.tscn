@@ -47,6 +47,14 @@ theme_override_font_sizes/font_size = 155
 text = "Bombseeker Prototype"
 label_settings = SubResource("LabelSettings_vyejc")
 
+[node name="Coins" type="Label" parent="."]
+layout_mode = 0
+offset_left = 915.0
+offset_top = 100.0
+offset_right = 976.0
+offset_bottom = 123.0
+text = "Coins: 0"
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Random" to="." method="_on_random_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
