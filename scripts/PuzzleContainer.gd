@@ -4,7 +4,9 @@ var cols : int = 10
 var rows : int = 10
 
 var puzzle : Array = []
+var cards : Array = []
 
+var playerCurrentPosition : Vector2i = Vector2i(2,5)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -38,6 +40,7 @@ func _ready():
 	for r in range(rows):
 
 		var row := []
+		var cardRow := []
 		
 		for c in range(cols): 
 			#var card = cardType.instantiate()
@@ -66,18 +69,30 @@ func _ready():
 			}
 			
 			row.append(config)
-			
+			cardRow.append([])
 		print(row)
 		puzzle.append(row)
+		cards.append(cardRow)
 		
 	print(puzzle)
 	printPuzzleDebug()
 	render()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
+func _input(event):
+	if Input.is_action_pressed("mark"):
+		if Input.is_action_pressed("move_left"):
+			print(playerCurrentPosition.x)
+			cards[playerCurrentPosition.x][playerCurrentPosition.y - 1].mark()
+		if Input.is_action_pressed("move_right"):
+			print(playerCurrentPosition.x)
+			cards[playerCurrentPosition.x][playerCurrentPosition.y + 1].mark()
+		if Input.is_action_pressed("move_up"):
+			print(playerCurrentPosition.x)
+			cards[playerCurrentPosition.x - 1][playerCurrentPosition.y].mark()
+		if Input.is_action_pressed("move_down"):
+			print(playerCurrentPosition.x)
+			cards[playerCurrentPosition.x + 1][playerCurrentPosition.y].mark()
 
 func printPuzzleDebug():
 	for r in range(puzzle.size()):
@@ -124,6 +139,8 @@ func render():
 				line += "[" + str(puzzle[r][c]["neighbors"]) + "]"
 			else:
 				line += "[ ]"
+				
+			cards[r][c] = card
 		print(line)
 	
 		var rightBlockInstance = blockType.instantiate()

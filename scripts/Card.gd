@@ -7,6 +7,10 @@ var secretValue = 1
 var bomb : bool = false
 var coin : bool = false
 var neighboringBombs : int = 0
+var marked : bool = false
+var labelText := "?"
+
+signal on_enter_card(currentPosition)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,16 +24,25 @@ func _process(delta):
 
 
 func _on_body_entered(body):
+	if marked:
+		return
+
 	if bomb:
-		label.text = "B"
+		labelText = "B"
 		body.die()
 	elif coin:
-		label.text = "C"
+		labelText = "C"
 	else:
-		label.text = str(neighboringBombs)
-		
+		labelText = str(neighboringBombs)
 	
+	updateLabel()
 
+func updateLabel():
+	if marked: 
+		label.text = "M"
+	else:
+		label.text = labelText
+		
 func setBomb(newValue : bool): 
 	bomb = newValue
 	
@@ -39,5 +52,6 @@ func setCoin(newValue : bool):
 func setNeighboringBombs(newValue : int):
 	neighboringBombs = newValue
 	
-
-	
+func mark():
+	marked = !marked
+	updateLabel()

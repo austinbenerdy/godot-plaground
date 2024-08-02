@@ -8,7 +8,8 @@ const JUMP_VELOCITY = -400.0
 
 
 func _physics_process(delta):
-
+	if Input.is_action_pressed('mark'):
+		return
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var x_dir = Input.get_axis("move_left", "move_right")
