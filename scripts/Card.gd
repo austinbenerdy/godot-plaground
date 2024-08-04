@@ -9,6 +9,7 @@ var coin : bool = false
 var neighboringBombs : int = 0
 var marked : bool = false
 var labelText := "?"
+var location : Vector2i
 
 signal on_enter_card(currentPosition)
 
@@ -16,14 +17,13 @@ signal on_enter_card(currentPosition)
 func _ready():
 	print("Card Dropped")
 
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
 
 func _on_body_entered(body):
+	on_enter_card.emit(location)
 	if marked:
 		return
 
@@ -51,7 +51,10 @@ func setCoin(newValue : bool):
 	
 func setNeighboringBombs(newValue : int):
 	neighboringBombs = newValue
-	
+
+func setLocation(newLocation : Vector2i):
+	location = newLocation
+
 func mark():
 	marked = !marked
 	updateLabel()

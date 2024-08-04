@@ -6,7 +6,7 @@ var rows : int = 10
 var puzzle : Array = []
 var cards : Array = []
 
-var playerCurrentPosition : Vector2i = Vector2i(2,5)
+var playerCurrentPosition : Vector2i = Vector2i(0,0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -128,8 +128,11 @@ func render():
 			card.set_name("Card_" + str(r) + "_" + str(c))
 			card.setBomb(puzzle[r][c]["bomb"])
 			card.setNeighboringBombs(puzzle[r][c]["neighbors"])
+			card.setLocation(Vector2i(r, c))
 			card.position.x = c * 24 - 100
 			card.position.y = r * 24 - 100
+			
+			card.on_enter_card.connect(_on_player_move)
 
 			print(card)
 			puzzleNode.add_child(card)			
@@ -149,3 +152,17 @@ func render():
 		rightBlockInstance.position.y = r * 24 - 110
 		
 		puzzleNode.add_child(rightBlockInstance)
+		
+func _calculate_gold_earned():
+	var coin = 0
+	
+	for row in cards:
+		for card in row:
+			if card.bomb && card.marked:
+				coin = coin + 1
+	
+	GlobalState.coins = GlobalState.coins + 1 + coin
+	GlobalState.save()
+
+func _on_player_move(newLocation : Vector2i):
+	playerCurrentPosition = newLocation
