@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://gpe41lejegdc"]
 
-[ext_resource type="Script" path="res://scripts/main.gd" id="1_dlqae"]
+[ext_resource type="Script" path="res://scripts/level_one.gd" id="1_hhgg5"]
 [ext_resource type="Texture2D" uid="uid://ctmfw4kl52gxi" path="res://assets/AdventureBegins_DemoVersion/AdventureBegins_Demo.png" id="2_guyjf"]
 [ext_resource type="PackedScene" uid="uid://bwtr3pp8llrc4" path="res://scenes/Player.tscn" id="3_hl2mq"]
 [ext_resource type="PackedScene" uid="uid://dhjrfwlgrotba" path="res://scenes/Exit.tscn" id="5_h5rkl"]
@@ -1701,8 +1701,8 @@ texture = ExtResource("2_guyjf")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_phoa6")
 
-[node name="Main" type="Node2D"]
-script = ExtResource("1_dlqae")
+[node name="LevelOne" type="Node2D"]
+script = ExtResource("1_hhgg5")
 
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1

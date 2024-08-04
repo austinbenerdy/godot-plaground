@@ -14,6 +14,8 @@ func _ready():
 	rows = self.rows
 	
 	var desiredBombs := 10
+	GlobalState.markers = desiredBombs
+	
 	if ((cols * rows) < desiredBombs):
 		print("Impossible Map")
 		desiredBombs = 0
@@ -80,7 +82,7 @@ func _ready():
 
 
 func _input(event):
-	if Input.is_action_pressed("mark"):
+	if Input.is_action_pressed("mark"):	
 		if Input.is_action_pressed("move_left"):
 			print(playerCurrentPosition.x)
 			cards[playerCurrentPosition.x][playerCurrentPosition.y - 1].mark()

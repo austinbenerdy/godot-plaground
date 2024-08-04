@@ -9,7 +9,7 @@ func _ready():
 	#puzzle.set_meta("Rows", 4)
 	#puzzle.set_meta("Bombs", 2)
 	var puzzleContainerNode = get_node("PuzzleContainer")
-
+	exit.character_enters_exit.connect(puzzle._calculate_gold_earned)
 	pass
 
 

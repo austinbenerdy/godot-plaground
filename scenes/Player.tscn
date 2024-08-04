@@ -137,3 +137,11 @@ sprite_frames = SubResource("SpriteFrames_w2kqv")
 animation = &"run_up"
 autoplay = "idle"
 frame_progress = 0.94606
+
+[node name="MarkerLabel" type="Label" parent="."]
+offset_left = 59.0
+offset_top = -62.0
+offset_right = 162.0
+offset_bottom = -39.0
+scale = Vector2(0.3, 0.3)
+text = "Markers Left:"

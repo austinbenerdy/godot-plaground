@@ -56,5 +56,15 @@ func setLocation(newLocation : Vector2i):
 	location = newLocation
 
 func mark():
+	if !marked && GlobalState.markers <= 0:
+		print("No more markers available")
+		return
+		
 	marked = !marked
+	
+	if marked:
+		GlobalState.markers = GlobalState.markers - 1
+	else:
+		GlobalState.markers = GlobalState.markers + 1
+	
 	updateLabel()
