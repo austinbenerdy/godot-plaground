@@ -55,6 +55,19 @@ offset_right = 976.0
 offset_bottom = 123.0
 text = "Coins: 0"
 
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 174.0
+offset_top = 232.0
+offset_right = 840.0
+offset_bottom = 512.0
+text = "W, A, S, D to move around. 
+
+Mark Bombs
+Press M + W, A, S, D to mark bombs on surrounding tiles.
+
+Earn 1 gold for exiting the map safely and another gold for each marked bomb."
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Random" to="." method="_on_random_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
