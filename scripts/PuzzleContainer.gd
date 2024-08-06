@@ -82,20 +82,88 @@ func _ready():
 
 
 func _input(event):
+	var px = playerCurrentPosition.x
+	var py = playerCurrentPosition.y
+	var card = null 
+	
 	if Input.is_action_pressed("mark"):	
 		if Input.is_action_pressed("move_left"):
 			print(playerCurrentPosition.x)
-			cards[playerCurrentPosition.x][playerCurrentPosition.y - 1].mark()
+			card = getCard(px, py - 1)
+			if card != null : card.mark()
+			
 		if Input.is_action_pressed("move_right"):
 			print(playerCurrentPosition.x)
-			cards[playerCurrentPosition.x][playerCurrentPosition.y + 1].mark()
+			card = getCard(px, py + 1)
+			if card != null : card.mark()
+
 		if Input.is_action_pressed("move_up"):
 			print(playerCurrentPosition.x)
-			cards[playerCurrentPosition.x - 1][playerCurrentPosition.y].mark()
+			card = getCard(px - 1, py)
+			if card != null : card.mark()
+
 		if Input.is_action_pressed("move_down"):
 			print(playerCurrentPosition.x)
-			cards[playerCurrentPosition.x + 1][playerCurrentPosition.y].mark()
-
+			card = getCard(px + 1, py )
+			if card != null : card.mark()
+			
+	if Input.is_action_pressed("spin-mark"):
+		card = getCard(px, py - 1)
+		if card != null : card.markOnly()
+		
+		card = getCard(px, py + 1)
+		if card != null : card.markOnly()
+		
+		card = getCard(px - 1, py)
+		if card != null : card.markOnly()
+		
+		card = getCard(px + 1, py)
+		if card != null : card.markOnly()
+		
+		card = getCard(px + 1, py + 1)
+		if card != null : card.markOnly()
+		
+		card = getCard(px - 1, py + 1)
+		if card != null : card.markOnly()
+		
+		card = getCard(px + 1, py - 1)
+		if card != null : card.markOnly()
+		
+		card = getCard(px - 1, py - 1)
+		if card != null : card.markOnly()
+		
+	if Input.is_action_pressed("spin-reveal"):
+		card = getCard(px, py - 1)
+		if card != null : card.reveal()
+		
+		card = getCard(px, py + 1)
+		if card != null : card.reveal()
+		
+		card = getCard(px - 1, py)
+		if card != null : card.reveal()
+		
+		card = getCard(px + 1, py)
+		if card != null : card.reveal()
+		
+		card = getCard(px + 1, py + 1)
+		if card != null : card.reveal()
+		
+		card = getCard(px - 1, py + 1)
+		if card != null : card.reveal()
+		
+		card = getCard(px + 1, py - 1)
+		if card != null : card.reveal()
+		
+		card = getCard(px - 1, py - 1)
+		if card != null : card.reveal()
+		
+func getCard(x : int, y : int):
+	if x >= 0 && x < cards.size():
+		if y >= 0 && y < cards[x].size():
+			return cards[x][y]
+	print("Index not found. Card: " + str(x) + ", " + str(y))
+	return null
+	
 func printPuzzleDebug():
 	for r in range(puzzle.size()):
 		var line = ""

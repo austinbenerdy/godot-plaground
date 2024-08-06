@@ -10,6 +10,7 @@ var neighboringBombs : int = 0
 var marked : bool = false
 var labelText := "?"
 var location : Vector2i
+var revealed : bool = false
 
 signal on_enter_card(currentPosition)
 
@@ -24,18 +25,26 @@ func _process(delta):
 
 func _on_body_entered(body):
 	on_enter_card.emit(location)
+	reveal(body)
+	
+func reveal(body : Node = null):
 	if marked:
 		return
 
+	revealed = true
 	if bomb:
 		labelText = "B"
-		body.die()
+		if body != null :
+			body.die()
+		else:
+			get_tree().change_scene_to_file("res://scenes/main.tscn")
 	elif coin:
 		labelText = "C"
 	else:
 		labelText = str(neighboringBombs)
 	
 	updateLabel()
+	
 
 func updateLabel():
 	if marked: 
@@ -56,6 +65,9 @@ func setLocation(newLocation : Vector2i):
 	location = newLocation
 
 func mark():
+	if revealed:
+		return
+
 	if !marked && GlobalState.markers <= 0:
 		print("No more markers available")
 		return
@@ -68,3 +80,9 @@ func mark():
 		GlobalState.markers = GlobalState.markers + 1
 	
 	updateLabel()
+	
+func markOnly():
+	if marked:
+		return 
+	mark()
+

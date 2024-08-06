@@ -66,6 +66,9 @@ text = "W, A, S, D to move around.
 Mark Bombs
 Press M + W, A, S, D to mark bombs on surrounding tiles.
 
+Space bar to reveal all neighboring tiles.
+Press N to mark all neighboring unrevealed tiles. 
+
 Earn 1 gold for exiting the map safely and another gold for each marked bomb."
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
